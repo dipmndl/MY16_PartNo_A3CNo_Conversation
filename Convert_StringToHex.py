@@ -1,3 +1,4 @@
+
 import binascii
 import pandas as pd
 import datetime as dt
@@ -16,10 +17,14 @@ pd.set_option('display.max_rows', 1000)
 
 try:
     display_obj = fr.FormatData.get_display_doors(3000, 1000)
-    df_A3C_No = fr.read_excel_data()
-    df_A3C_No.rename({"Unnamed: 0": "a"}, axis="columns", inplace=True)
-    df_A3C_No.drop(["a"], axis=1, inplace=True)
-    df_A3C_No.fillna(0, inplace=True)
+    df = fr.read_excel_data()
+    df.rename({"Unnamed: 0": "a"}, axis="columns", inplace=True)
+    df.drop(["a"], axis=1, inplace=True)
+    df.fillna(0, inplace=True)
+    options = ['High / SSP / Low', 'Customer Part Number', 'Material-No.'] 
+    rslt_df = df[df['SAP Customer Project Name: HONMY16IBC'].isin(options)] 
+    print(rslt_df)
+    ''' 
     new_header = df_A3C_No.iloc[9]  # grab the first row for the header(iloc by index position --> SAPPDM excel row no = 11 --> 'High / SSP / Low'). If Actual excel file format change, Change this index position accordingly
     df_A3C_No = df_A3C_No[10:]  # take the data less the header row(iloc by index position --> SAPPDM excel row no = 12 -->  BCM Variant)
     df_A3C_No.columns = new_header
@@ -29,7 +34,7 @@ try:
     df_A3C_No.columns.name = None  # remove index from header column
     df_A3C_No = df_A3C_No.set_index('High / SSP / Low')
     df_A3C_No_transposed = df_A3C_No.T
-
+    '''
 except Exception as e:
     print("Oops!", sys.exc_info()[0], "occurred.")
     print("Oops!", e.__class__, "occurred in A3C No file.")

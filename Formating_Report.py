@@ -15,7 +15,7 @@ class FormatData:
 def read_excel_data():
     try:
         df = pd.read_excel(
-            "D:\\2.0 HONDA\\Automation_Dev\\MY16\ECM Files\\1. ECM 10451940\\SAPPDM LIST_BCM_TGJT.xlsm")
+            "D:\\MY16\ECM Files\\1. ECM 10451940\\SAPPDM LIST_BCM_TGJT.xlsm")
         return df
 
     except Exception as e:

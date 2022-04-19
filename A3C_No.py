@@ -1,8 +1,8 @@
 import sys
 
 import pandas as pd
-import Formatting_Report as fr
-import Formatting_Report as fr
+import Formatting_Report_old as fr
+import Formatting_Report_old as fr
 ''' Collect variant wise A3C no from SAPPDM file  
 '''
 factory_A3C_No = ''
