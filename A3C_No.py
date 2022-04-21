@@ -15,7 +15,7 @@ def create_dict_A3C_No(ind_var, df_type):
         df_A3C_No.rename({"Unnamed: 0": "a"}, axis="columns", inplace=True)
         df_A3C_No.drop(["a"], axis=1, inplace=True)
         df_A3C_No.fillna(0, inplace=True)
-        new_header = df_A3C_No.iloc[9]          # grab the first row for the header(iloc by index position --> SAPPDM excel row no = 11 --> 'High / SSP / Low'). If Actual excel file format change, Change this index position accordingly
+        new_header = df_A3C_No.iloc[9] # grab the first row for the header(iloc by index position --> SAPPDM excel row no = 11 --> 'High / SSP / Low'). If Actual excel file format change, Change this index position accordingly
         df_A3C_No = df_A3C_No[10:]              # take the data less the header row(iloc by index position --> SAPPDM excel row no = 12 -->  BCM Variant)
         df_A3C_No.columns = new_header
         df_A3C_No = df_A3C_No.loc[df_A3C_No['High / SSP / Low'].isin(['BCM Variant', 'Customer Part Number', 'Material-No.'])]

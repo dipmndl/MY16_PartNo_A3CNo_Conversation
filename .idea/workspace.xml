@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9f31292-9488-4bb6-9611-dc974ea0fb76" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Convert_StringToHex.py" beforeDir="false" afterPath="$PROJECT_DIR$/Convert_StringToHex.py" afterDir="false" />
-    </list>
+    <list default="true" id="b9f31292-9488-4bb6-9611-dc974ea0fb76" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

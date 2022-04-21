@@ -23,7 +23,10 @@ try:
     df.fillna(0, inplace=True)
     options = ['High / SSP / Low', 'Customer Part Number', 'Material-No.'] 
     rslt_df = df[df['SAP Customer Project Name: HONMY16IBC'].isin(options)] 
-    print(rslt_df)
+    new_header = rslt_df.iloc[0]
+    rslt_df.columns = new_header
+    fact_df = rslt_df.loc[rslt_df['High / SSP / Low'].isin(['High'])]
+    print(fact_df)
     ''' 
     new_header = df_A3C_No.iloc[9]  # grab the first row for the header(iloc by index position --> SAPPDM excel row no = 11 --> 'High / SSP / Low'). If Actual excel file format change, Change this index position accordingly
     df_A3C_No = df_A3C_No[10:]  # take the data less the header row(iloc by index position --> SAPPDM excel row no = 12 -->  BCM Variant)
@@ -39,3 +42,4 @@ except Exception as e:
     print("Oops!", sys.exc_info()[0], "occurred.")
     print("Oops!", e.__class__, "occurred in A3C No file.")
     print(e)
+
