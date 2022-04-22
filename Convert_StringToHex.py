@@ -26,6 +26,7 @@ try:
     new_header = rslt_df.iloc[0]
     rslt_df.columns = new_header
     fact_df = rslt_df.loc[rslt_df['High / SSP / Low'].isin(['High'])]
+    ## Check result
     print(fact_df)
     ''' 
     new_header = df_A3C_No.iloc[9]  # grab the first row for the header(iloc by index position --> SAPPDM excel row no = 11 --> 'High / SSP / Low'). If Actual excel file format change, Change this index position accordingly
