@@ -38,8 +38,26 @@ try:
     excel_file = pd.ExcelWriter("D:\\MY16\ECM Files\\ECM_result.xlsx")
     rslt_df_name_transpose.to_excel(excel_file, sheet_name="Result", index=True)
     excel_file.save()
-
-    
+     df_new = pd.read_excel("D:\\MY16\ECM Files\\ECM_result.xlsx", sheet_name="Result")
+    new_header = df_new.iloc[0]  # grab the first row for the header
+    df_new = df_new[1:]  # take the data less the header row
+    df_new.columns = new_header  # set the header row as the df header
+    # Factory
+    Factory_df = df_new.loc[df_new['High / SSP / Low'] == 'High']
+    Factory_df = Factory_df.loc[2:, ['Customer Part Number']]
+    Factory_df.reset_index(drop=True, inplace=True)
+    excel_file = pd.ExcelWriter("D:\\MY16\ECM Files\\Factory_ECM.xlsx")
+    Factory_df.to_excel(excel_file, sheet_name="Result", index=True)
+    excel_file.save()
+    # Spare
+    Spare_df = df_new.loc[df_new['High / SSP / Low'].isin(['SSP High'])]
+    Spare_df = Spare_df.loc[2:, ['Customer Part Number']]
+    Spare_df.reset_index(drop=True, inplace=True)
+    excel_file = pd.ExcelWriter("D:\\MY16\ECM Files\\Spare_ECM.xlsx")
+    Spare_df.to_excel(excel_file, sheet_name="Result", index=True)
+    excel_file.save()
+    print(df_new)
+    '''
     new_header = df_A3C_No.iloc[9]  # grab the first row for the header(iloc by index position --> SAPPDM excel row no = 11 --> 'High / SSP / Low'). If Actual excel file format change, Change this index position accordingly
     df_A3C_No = df_A3C_No[10:]  # take the data less the header row(iloc by index position --> SAPPDM excel row no = 12 -->  BCM Variant)
     df_A3C_No.columns = new_header
@@ -49,18 +67,8 @@ try:
     df_A3C_No.columns.name = None  # remove index from header column
     df_A3C_No = df_A3C_No.set_index('High / SSP / Low')
     df_A3C_No_transposed = df_A3C_No.T
-    '''
-    df_new = pd.read_excel("D:\\MY16\ECM Files\\ECM_result.xlsx", sheet_name="Result")
-    new_header = df_new.iloc[0]  # grab the first row for the header
-    df_new = df_new[1:]  # take the data less the header row
-    df_new.columns = new_header  # set the header row as the df header
-    Factory_df = df_new.loc[df_new['High / SSP / Low'] == 'High']
-    Factory_df = Factory_df.loc[2:, ['Customer Part Number']]
-    Factory_df.reset_index(drop=True, inplace=True)
-    excel_file = pd.ExcelWriter("D:\\MY16\ECM Files\\Factory_ECM.xlsx")
-    Factory_df.to_excel(excel_file, sheet_name="Result", index=True)
-    excel_file.save()
-    print(df_new)
+
+
 
 except Exception as e:
     print("Oops!", sys.exc_info()[0], "occurred.")
